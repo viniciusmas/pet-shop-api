@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "480c085c-4e53-4d0c-bf4a-7d2752ac4d1f",
+		"name": "pet-shop-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47582128",
+		"_collection_link": "https://vinicius-msouza-5120914.postman.co/workspace/Vinicius-Team's-Workspace~780c7036-04d2-46ba-8e1a-e738e3f98906/collection/47582128-480c085c-4e53-4d0c-bf4a-7d2752ac4d1f?action=share&source=collection_link&creator=47582128"
+	},
+	"item": [
+		{
+			"name": "cliente",
+			"item": [
+				{
+					"name": "obterPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cliente/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterLista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

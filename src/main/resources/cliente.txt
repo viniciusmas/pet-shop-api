@@ -1,0 +1,2 @@
+Vinicius Moreira;1111111111;1111111111;01-02-1988 00:00:00;Masculino;Casado;1234567890;vinicius@gmail.com;15-12-2024 15:30:45;true;Rua ABC;123;Bairro A;Rio de Janeiro;RJ;12345678
+Maria Silva;222222222;222222222;02-03-1984 00:00:00;Feminino;Solteira;987654321;maria@gmail.com;15-01-2025 00:00:00;false;Rua XYZ;456;Bairro B;Rio de Janeiro;RJ;12345678
