@@ -16,7 +16,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cliente/4",
+							"raw": "http://localhost:8080/api/clientes/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,8 +24,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"cliente",
-								"4"
+								"clientes",
+								"3"
 							]
 						}
 					},
@@ -37,7 +37,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cliente",
+							"raw": "http://localhost:8080/api/clientes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -45,7 +45,247 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"cliente"
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "incluir",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n    \"cpf\": 12535678,\r\n    \"rg\": 98457880,\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": 98789478,\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": 12,\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 21558789\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"ativo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Gustavo Ramos Garcia de Souza\",\r\n    \"rg\": 98457880,\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": 98789478,\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": 12,\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 21558789\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"ativo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/clientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/clientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inativar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n    \"cpf\": 12535678,\r\n    \"rg\": 98457880,\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": 98789478,\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": 12,\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 21558789\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"statusCliente\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/clientes/3/inativar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes",
+								"3",
+								"inativar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "funcionario",
+			"item": [
+				{
+					"name": "obterPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/funcionarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"funcionarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterLista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "incluir",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": 789456,\r\n    \"rg\": 123456,\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": 78894556,\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua B\",\r\n        \"numero\": 11,\r\n        \"bairro\": \"Bairro F\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 3214878\r\n    },\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 2000,\r\n    \"bonus\": 120\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": 789456,\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": 78894556,\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua B\",\r\n        \"numero\": 11,\r\n        \"bairro\": \"Bairro F\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 3214878\r\n    },\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 2000,\r\n    \"bonus\": 120\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/funcionarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"funcionarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/funcionarios/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"funcionarios",
+								"3"
 							]
 						}
 					},

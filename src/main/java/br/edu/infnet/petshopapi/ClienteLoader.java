@@ -7,7 +7,6 @@ import br.edu.infnet.petshopapi.util.Util;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -22,12 +21,14 @@ public class ClienteLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
         FileReader fileReader = new FileReader("src/main/resources/cliente.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String readLine = bufferedReader.readLine();
         String[] fields = null;
 
         while (readLine != null) {
+
             fields = readLine.split(";");
 
             Cliente cliente = new Cliente();
@@ -40,7 +41,7 @@ public class ClienteLoader implements ApplicationRunner {
             cliente.setTelefone(Integer.valueOf(fields[6]));
             cliente.setEmail(fields[7]);
             cliente.setClienteDeste(Util.dateFormatter(fields[8]));
-            cliente.setStatusCliente(Boolean.valueOf(fields[9]));
+            cliente.setAtivo(Boolean.valueOf(fields[9]));
 
             Endereco endereco = new Endereco();
             endereco.setLogradouro(fields[10]);
@@ -52,13 +53,15 @@ public class ClienteLoader implements ApplicationRunner {
 
             cliente.setEndereco(endereco);
 
-            clienteService.salvar(cliente);
+            clienteService.incluir(cliente);
 
             System.out.println(cliente);
 
             readLine = bufferedReader.readLine();
         }
+
         System.out.println("Total - " + clienteService.obterLista().size());
+
         bufferedReader.close();
     }
 }

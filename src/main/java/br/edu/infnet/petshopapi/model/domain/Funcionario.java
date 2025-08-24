@@ -1,53 +1,26 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Funcionario extends Pessoa {
 
     private String cargo;
-    private double salario;
-    private double bonus;
-    private Endereco endereco;
+
+    private Double salario;
+
+    private Double bonus;
 
     @Override
     public String toString() {
-        return String.format("%s - %s - %.2f - %.2f", super.toString(), cargo, salario, bonus);
+        return String.format("%s Cargo = %s, Salário = %.2f, Bônus = %.2f", super.toString(), cargo, salario, bonus);
     }
 
     @Override
     public String obterTipo() {
-        return "Funcionario";
+        return "";
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
-    public double getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(double bonus) {
-        this.bonus = bonus;
-    }
-
-    @Override
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 }
