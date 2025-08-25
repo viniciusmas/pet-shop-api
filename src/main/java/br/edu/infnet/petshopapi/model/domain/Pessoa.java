@@ -1,5 +1,6 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
@@ -7,8 +8,11 @@ import java.time.format.DateTimeFormatter;
 
 @Setter
 @Getter
+@MappedSuperclass
 public abstract class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nome;
@@ -27,6 +31,8 @@ public abstract class Pessoa {
 
     private String email;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
     @Override

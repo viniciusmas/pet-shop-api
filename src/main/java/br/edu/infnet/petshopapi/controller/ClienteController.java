@@ -2,6 +2,8 @@ package br.edu.infnet.petshopapi.controller;
 
 import br.edu.infnet.petshopapi.model.domain.Cliente;
 import br.edu.infnet.petshopapi.model.service.ClienteService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,33 +19,55 @@ public class ClienteController {
     }
 
     @PostMapping
-    public Cliente incluir(@RequestBody Cliente cliente) {
-        return clienteService.incluir(cliente);
+    public ResponseEntity<Cliente> incluir(@RequestBody Cliente cliente) {
+
+        Cliente clienteNovo = clienteService.incluir(cliente);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteNovo);
     }
 
     @PutMapping(value = "/{id}")
-    public Cliente alterar(@PathVariable Integer id, @RequestBody Cliente cliente) {
-        return clienteService.alterar(id, cliente);
+    public ResponseEntity<Cliente> alterar(@PathVariable Integer id, @RequestBody Cliente cliente) {
+
+        Cliente clienteAlterado = clienteService.alterar(id, cliente);
+
+        return ResponseEntity.ok(clienteAlterado);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void excluir(@PathVariable Integer id) {
+    public ResponseEntity<Void> excluir(@PathVariable Integer id) {
+
         clienteService.excluir(id);
+
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public List<Cliente> obterLista() {
-        return clienteService.obterLista();
+    public ResponseEntity<List<Cliente>> obterLista() {
+
+        List<Cliente> clientes = clienteService.obterLista();
+
+        if (clientes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(clientes);
     }
 
     @GetMapping(value = "/{id}")
-    public Cliente obterPorId(@PathVariable Integer id) {
-        return clienteService.obterPorId(id);
+    public ResponseEntity<Cliente> obterPorId(@PathVariable Integer id) {
+
+        Cliente cliente = clienteService.obterPorId(id);
+
+        return ResponseEntity.ok(cliente);
     }
 
     @PatchMapping(value = "/{id}/inativar")
-    public Cliente inativar(@PathVariable Integer id) {
-        return clienteService.inativar(id);
+    public ResponseEntity<Cliente> inativar(@PathVariable Integer id) {
+
+        Cliente cliente = clienteService.inativar(id);
+
+        return ResponseEntity.ok(cliente);
     }
 
 }

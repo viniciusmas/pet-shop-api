@@ -2,6 +2,8 @@ package br.edu.infnet.petshopapi.controller;
 
 import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.service.FuncionarioService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,28 +20,47 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public Funcionario incluir(@RequestBody Funcionario funcionario) {
-        return funcionarioService.incluir(funcionario);
+    public ResponseEntity<Funcionario> incluir(@RequestBody Funcionario funcionario) {
+
+        Funcionario funcionarioNovo = funcionarioService.incluir(funcionario);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioNovo);
     }
 
     @PutMapping(value = "/{id}")
-    public Funcionario alterar(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
-        return funcionarioService.alterar(id, funcionario);
+    public ResponseEntity<Funcionario> alterar(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
+
+        Funcionario funcionarioAlterado = funcionarioService.alterar(id, funcionario);
+
+        return ResponseEntity.ok(funcionarioAlterado);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void excluir(@PathVariable Integer id) {
+    public ResponseEntity<Void> excluir(@PathVariable Integer id) {
+
         funcionarioService.excluir(id);
+
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-    public List<Funcionario> obterLista() {
-        return funcionarioService.obterLista();
+    public ResponseEntity<List<Funcionario>> obterLista() {
+
+        List<Funcionario> funcionarios = funcionarioService.obterLista();
+
+        if (funcionarios.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(funcionarios);
     }
 
     @GetMapping(value = "/{id}")
-    public Funcionario obterPorId(@PathVariable Integer id) {
-        return funcionarioService.obterPorId(id);
+    public ResponseEntity<Funcionario> obterPorId(@PathVariable Integer id) {
+
+        Funcionario funcionario = funcionarioService.obterPorId(id);
+
+        return ResponseEntity.ok(funcionario);
     }
 
 }

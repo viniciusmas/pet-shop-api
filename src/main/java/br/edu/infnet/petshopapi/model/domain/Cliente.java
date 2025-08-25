@@ -1,5 +1,6 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
@@ -7,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 @Setter
 @Getter
+@Entity
 public class Cliente extends Pessoa {
 
     private LocalDateTime clienteDeste;
@@ -16,7 +18,7 @@ public class Cliente extends Pessoa {
     @Override
     public String toString() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        return String.format("%s Cliente Deste = %s, Status = %s", super.toString(), clienteDeste.format(dateTimeFormatter), ativo ? "Ativo" : "Inativo");
+        return String.format("Cliente { %s Cliente Deste = %s, Status = %s }", super.toString(), clienteDeste.format(dateTimeFormatter), ativo ? "Ativo" : "Inativo");
     }
 
     @Override

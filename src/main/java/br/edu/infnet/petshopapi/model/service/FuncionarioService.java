@@ -3,20 +3,18 @@ package br.edu.infnet.petshopapi.model.service;
 import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioInvalidoException;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioNaoEncontradoException;
+import br.edu.infnet.petshopapi.model.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class FuncionarioService implements CrudService<Funcionario, Integer> {
 
-    private final Map<Integer, Funcionario> funcionarioMap = new ConcurrentHashMap<>();
+    private final FuncionarioRepository funcionarioRepository;
 
-    private final AtomicInteger funcionarioId = new AtomicInteger(1);
+    public FuncionarioService(FuncionarioRepository funcionarioRepository) {
+        this.funcionarioRepository = funcionarioRepository;
+    }
 
     private void validar(Funcionario funcionario) {
 
@@ -38,11 +36,7 @@ public class FuncionarioService implements CrudService<Funcionario, Integer> {
             throw new IllegalArgumentException("Um novo funcionário não pode ter um ID na inclusão!");
         }
 
-        funcionario.setId(funcionarioId.getAndIncrement());
-
-        funcionarioMap.put(funcionario.getId(), funcionario);
-
-        return funcionario;
+        return funcionarioRepository.save(funcionario);
     }
 
     @Override
@@ -58,39 +52,29 @@ public class FuncionarioService implements CrudService<Funcionario, Integer> {
 
         funcionario.setId(id);
 
-        funcionarioMap.put(funcionario.getId(), funcionario);
-
-        return funcionario;
+        return funcionarioRepository.save(funcionario);
     }
 
     @Override
     public void excluir(Integer id) {
 
-        if (id == null || id == 0) {
-            throw new IllegalArgumentException("O ID para exclusão não pode ser nulo/zero!");
-        }
+        Funcionario funcionario = obterPorId(id);
 
-        if (!funcionarioMap.containsKey(id)) {
-            throw new FuncionarioNaoEncontradoException("O funcionário com ID " + id + " não foi encontrado!");
-        }
-
-        funcionarioMap.remove(id);
+        funcionarioRepository.delete(funcionario);
     }
 
     @Override
     public Funcionario obterPorId(Integer id) {
 
-        Funcionario funcionario = funcionarioMap.get(id);
-
-        if(funcionario == null) {
-            throw new IllegalArgumentException("Impossível obter o funcionário pelo ID " + id);
+        if (id == null || id == 0) {
+            throw new IllegalArgumentException("O ID para exclusão não pode ser nulo/zero!");
         }
 
-        return funcionario;
+        return funcionarioRepository.findById(id).orElseThrow(() -> new FuncionarioNaoEncontradoException("O funcionário com ID " + id + " não foi encontrado!"));
     }
 
     @Override
     public List<Funcionario> obterLista() {
-        return new ArrayList<Funcionario>(funcionarioMap.values());
+        return funcionarioRepository.findAll();
     }
 }

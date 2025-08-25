@@ -3,19 +3,18 @@ package br.edu.infnet.petshopapi.model.service;
 import br.edu.infnet.petshopapi.model.domain.Cliente;
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteInvalidoException;
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteNaoEncontradoException;
+import br.edu.infnet.petshopapi.model.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class ClienteService implements CrudService<Cliente,Integer> {
 
-    private final Map<Integer, Cliente> clienteMap = new ConcurrentHashMap<>();
+    private final ClienteRepository clienteRepository;
 
-    private final AtomicInteger clienteId = new AtomicInteger(1);
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     private void validar(Cliente cliente) {
 
@@ -37,11 +36,7 @@ public class ClienteService implements CrudService<Cliente,Integer> {
             throw new IllegalArgumentException("Um novo cliente não pode ter um ID na inclusão!");
         }
 
-        cliente.setId(clienteId.getAndIncrement());
-
-        clienteMap.put(cliente.getId(), cliente);
-
-        return cliente;
+        return clienteRepository.save(cliente);
     }
 
     @Override
@@ -57,41 +52,30 @@ public class ClienteService implements CrudService<Cliente,Integer> {
 
         cliente.setId(id);
 
-        clienteMap.put(cliente.getId(), cliente);
-
-        return cliente;
+        return clienteRepository.save(cliente);
     }
 
     @Override
     public void excluir(Integer id) {
 
-        if (id == null || id == 0) {
-            throw new IllegalArgumentException("O ID para exclusão não pode ser nulo/zero!");
-        }
+        Cliente cliente = obterPorId(id);
 
-        if (!clienteMap.containsKey(id)) {
-            throw new ClienteNaoEncontradoException("O cliente com ID " + id + " não foi encontrado!");
-        }
-
-        clienteMap.remove(id);
+        clienteRepository.delete(cliente);
     }
 
     @Override
     public Cliente obterPorId(Integer id) {
 
-        Cliente cliente = clienteMap.get(id);
-
-        if(cliente == null) {
-            throw new IllegalArgumentException("Impossível obter o cliente pelo ID " + id);
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("O ID para exclusão não pode ser nulo/zero!");
         }
 
-        return cliente;
+        return clienteRepository.findById(id).orElseThrow(() -> new ClienteNaoEncontradoException("O cliente com ID " + id + " não foi encontrado!"));
     }
 
     @Override
     public List<Cliente> obterLista() {
-
-        return new ArrayList<Cliente>(clienteMap.values());
+        return clienteRepository.findAll();
     }
 
     public Cliente inativar(Integer id) {
@@ -109,8 +93,6 @@ public class ClienteService implements CrudService<Cliente,Integer> {
 
         cliente.setAtivo(false);
 
-        clienteMap.put(cliente.getId(), cliente);
-
-        return cliente;
+        return clienteRepository.save(cliente);
     }
 }

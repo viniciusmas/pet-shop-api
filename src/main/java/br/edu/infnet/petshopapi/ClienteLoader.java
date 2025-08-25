@@ -55,12 +55,10 @@ public class ClienteLoader implements ApplicationRunner {
 
             clienteService.incluir(cliente);
 
-            System.out.println(cliente);
-
             readLine = bufferedReader.readLine();
         }
 
-        System.out.println("Total - " + clienteService.obterLista().size());
+        clienteService.obterLista().forEach(System.out::println);
 
         bufferedReader.close();
     }

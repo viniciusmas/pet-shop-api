@@ -57,12 +57,10 @@ public class FuncionarioLoader implements ApplicationRunner {
 
             funcionarioService.incluir(funcionario);
 
-            System.out.println(funcionario);
-
             readLine = bufferedReader.readLine();
         }
 
-        System.out.println("Total - " + funcionarioService.obterLista().size());
+        funcionarioService.obterLista().forEach(System.out::println);
 
         bufferedReader.close();
 
