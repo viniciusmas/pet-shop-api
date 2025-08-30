@@ -5,6 +5,8 @@ import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioInvalidoExcep
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioNaoEncontradoException;
 import br.edu.infnet.petshopapi.model.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -28,6 +30,7 @@ public class FuncionarioService implements CrudService<Funcionario, Integer> {
     }
 
     @Override
+    @Transactional
     public Funcionario incluir(Funcionario funcionario) {
 
         validar(funcionario);
@@ -40,6 +43,7 @@ public class FuncionarioService implements CrudService<Funcionario, Integer> {
     }
 
     @Override
+    @Transactional
     public Funcionario alterar(Integer id, Funcionario funcionario) {
 
         if (id == null || id == 0) {
@@ -56,6 +60,7 @@ public class FuncionarioService implements CrudService<Funcionario, Integer> {
     }
 
     @Override
+    @Transactional
     public void excluir(Integer id) {
 
         Funcionario funcionario = obterPorId(id);

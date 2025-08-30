@@ -5,6 +5,8 @@ import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteInvalidoException
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteNaoEncontradoException;
 import br.edu.infnet.petshopapi.model.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -28,11 +30,12 @@ public class ClienteService implements CrudService<Cliente,Integer> {
     }
 
     @Override
+    @Transactional
     public Cliente incluir(Cliente cliente) {
 
         validar(cliente);
 
-        if (cliente.getId() != null && cliente.getId() != 0){
+        if (cliente.getId() != null && cliente.getId() != 0) {
             throw new IllegalArgumentException("Um novo cliente não pode ter um ID na inclusão!");
         }
 
@@ -40,6 +43,7 @@ public class ClienteService implements CrudService<Cliente,Integer> {
     }
 
     @Override
+    @Transactional
     public Cliente alterar(Integer id, Cliente cliente) {
 
         if (id == null || id == 0) {
@@ -56,6 +60,7 @@ public class ClienteService implements CrudService<Cliente,Integer> {
     }
 
     @Override
+    @Transactional
     public void excluir(Integer id) {
 
         Cliente cliente = obterPorId(id);
@@ -78,6 +83,7 @@ public class ClienteService implements CrudService<Cliente,Integer> {
         return clienteRepository.findAll();
     }
 
+    @Transactional
     public Cliente inativar(Integer id) {
 
         if (id == null || id == 0) {
@@ -86,13 +92,19 @@ public class ClienteService implements CrudService<Cliente,Integer> {
 
         Cliente cliente = obterPorId(id);
 
-        if (!cliente.getAtivo()) {
+        if (!cliente.getStatus()) {
             System.out.println("Cliente " + cliente.getNome() + " já está inativo!");
             return cliente;
         }
 
-        cliente.setAtivo(false);
+        cliente.setStatus(false);
 
         return clienteRepository.save(cliente);
     }
+
+    public Cliente obterPorCpf(String cpf) {
+
+        return clienteRepository.findByCpf(cpf).orElseThrow(() -> new ClienteNaoEncontradoException("O cliente com CPF " + cpf + " não foi encontrado!"));
+    }
+
 }

@@ -32,6 +32,28 @@
 					"response": []
 				},
 				{
+					"name": "obterPorCpf",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/clientes/cpf/123.456.789-01",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"clientes",
+								"cpf",
+								"123.456.789-01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "obterLista",
 					"request": {
 						"method": "GET",
@@ -58,7 +80,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n    \"cpf\": 12535678,\r\n    \"rg\": 98457880,\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": 98789478,\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": 12,\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 21558789\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"ativo\": true\r\n}",
+							"raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n\r\n    \"rg\": \"98457880\",\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": \"98789478\",\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": \"12\",\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": \"21558789\"\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"status\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -87,7 +109,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Gustavo Ramos Garcia de Souza\",\r\n    \"rg\": 98457880,\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": 98789478,\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": 12,\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 21558789\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"ativo\": true\r\n}",
+							"raw": "{\r\n    \"nome\": \"Gustavo Ramos Garcia de Souza\",\r\n    \"rg\": \"98457880\",\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": \"98789478\",\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": \"12\",\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": \"21558789\"\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"status\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -115,10 +137,6 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/clientes/3",
 							"protocol": "http",
@@ -140,10 +158,6 @@
 					"request": {
 						"method": "PATCH",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n    \"cpf\": 12535678,\r\n    \"rg\": 98457880,\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": 98789478,\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": 12,\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 21558789\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"statusCliente\": true\r\n}"
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/clientes/3/inativar",
 							"protocol": "http",
@@ -214,7 +228,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": 789456,\r\n    \"rg\": 123456,\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": 78894556,\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua B\",\r\n        \"numero\": 11,\r\n        \"bairro\": \"Bairro F\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 3214878\r\n    },\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 2000,\r\n    \"bonus\": 120\r\n}",
+							"raw": "{\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": \"789456\",\r\n    \"rg\": \"123456\",\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": \"78894556\",\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua B\",\r\n        \"numero\": 11,\r\n        \"bairro\": \"Bairro F\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": \"3214878\"\r\n    },\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 2000,\r\n    \"bonus\": 120\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -243,7 +257,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 3,\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": 789456,\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": 78894556,\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua B\",\r\n        \"numero\": 11,\r\n        \"bairro\": \"Bairro F\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": 3214878\r\n    },\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 2000,\r\n    \"bonus\": 120\r\n}",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": \"789456\",\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": \"78894556\",\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua B\",\r\n        \"numero\": \"11\",\r\n        \"bairro\": \"Bairro F\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": \"3214878\"\r\n    },\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 2000,\r\n    \"bonus\": 120\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -286,6 +300,169 @@
 								"api",
 								"funcionarios",
 								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "obterPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pets/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterLista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterPorIdades",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idadeMin\" : 1,\r\n    \"idadeMax\" : 15 \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pets/idades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"idades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "incluir",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Bob\",\r\n    \"tipoEspecie\": \"CACHORRO\",\r\n    \"raca\": \"Vira Lata\",\r\n    \"idade\": 7,\r\n    \"peso\": 9.0,\r\n    \"tutor\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Vinicius Moreira\",\r\n        \"cpf\": \"123.456.789-01\",\r\n        \"rg\": \"321826447\",\r\n        \"dataNascimento\": \"1988-02-01T00:00:00\",\r\n        \"sexo\": \"Masculino\",\r\n        \"estadoCivil\": \"Casado\",\r\n        \"telefone\": \"(21)98765-4321\",\r\n        \"email\": \"vinicius@gmail.com\",\r\n        \"endereco\": {\r\n            \"id\": 1,\r\n            \"logradouro\": \"Rua ABC\",\r\n            \"numero\": \"123\",\r\n            \"bairro\": \"Bairro A\",\r\n            \"cidade\": \"Rio de Janeiro\",\r\n            \"estado\": \"RJ\",\r\n            \"cep\": \"90000-002\"\r\n        },\r\n        \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n        \"status\": true\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nome\": \"Caramelo\",\r\n        \"tipoEspecie\": \"CACHORRO\",\r\n        \"raca\": \"Vira Lata\",\r\n        \"idade\": 7,\r\n        \"peso\": 9.0,\r\n        \"tutor\": {\r\n            \"id\": 1,\r\n            \"nome\": \"Vinicius Moreira\",\r\n            \"cpf\": \"123.456.789-01\",\r\n            \"rg\": \"321826447\",\r\n            \"dataNascimento\": \"1988-02-01T00:00:00\",\r\n            \"sexo\": \"Masculino\",\r\n            \"estadoCivil\": \"Casado\",\r\n            \"telefone\": \"(21)98765-4321\",\r\n            \"email\": \"vinicius@gmail.com\",\r\n            \"endereco\": {\r\n                \"id\": 1,\r\n                \"logradouro\": \"Rua ABC\",\r\n                \"numero\": \"123\",\r\n                \"bairro\": \"Bairro A\",\r\n                \"cidade\": \"Rio de Janeiro\",\r\n                \"estado\": \"RJ\",\r\n                \"cep\": \"90000-002\"\r\n            },\r\n            \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n            \"status\": true\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pets/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "excluir",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pets/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pets",
+								"2"
 							]
 						}
 					},

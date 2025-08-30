@@ -1,0 +1,2 @@
+Spake;CACHORRO;Yorkshire;3;10.0;123.456.789-01
+Bob;GATO;Vira Lata;6;8.0;765.342.123-23

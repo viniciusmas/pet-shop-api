@@ -2,6 +2,7 @@ package br.edu.infnet.petshopapi.controller;
 
 import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.service.FuncionarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Funcionario> incluir(@RequestBody Funcionario funcionario) {
+    public ResponseEntity<Funcionario> incluir(@Valid @RequestBody Funcionario funcionario) {
 
         Funcionario funcionarioNovo = funcionarioService.incluir(funcionario);
 
@@ -28,7 +29,7 @@ public class FuncionarioController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Funcionario> alterar(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
+    public ResponseEntity<Funcionario> alterar(@PathVariable Integer id, @Valid @RequestBody Funcionario funcionario) {
 
         Funcionario funcionarioAlterado = funcionarioService.alterar(id, funcionario);
 

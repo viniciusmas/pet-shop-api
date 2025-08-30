@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.edu.infnet</groupId>
 	<artifactId>pet-shop-api</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<name>pet-shop-api</name>
 	<description>API para Gestão de Pet Shop</description>
 	<url/>
@@ -30,6 +30,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

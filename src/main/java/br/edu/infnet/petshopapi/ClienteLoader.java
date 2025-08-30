@@ -6,10 +6,12 @@ import br.edu.infnet.petshopapi.model.service.ClienteService;
 import br.edu.infnet.petshopapi.util.Util;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+@Order(1)
 @Component
 public class ClienteLoader implements ApplicationRunner {
 
@@ -25,7 +27,9 @@ public class ClienteLoader implements ApplicationRunner {
         FileReader fileReader = new FileReader("src/main/resources/cliente.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String readLine = bufferedReader.readLine();
-        String[] fields = null;
+        String[] fields;
+
+        System.out.println("[ClienteLoader] Iniciando carregamento do cliente do arquivo...");
 
         while (readLine != null) {
 
@@ -33,32 +37,41 @@ public class ClienteLoader implements ApplicationRunner {
 
             Cliente cliente = new Cliente();
             cliente.setNome(fields[0]);
-            cliente.setCpf(Integer.valueOf(fields[1]));
-            cliente.setRg(Integer.valueOf(fields[2]));
+            cliente.setCpf(fields[1]);
+            cliente.setRg(fields[2]);
             cliente.setDataNascimento(Util.dateFormatter(fields[3]));
             cliente.setSexo(fields[4]);
             cliente.setEstadoCivil(fields[5]);
-            cliente.setTelefone(Integer.valueOf(fields[6]));
+            cliente.setTelefone(fields[6]);
             cliente.setEmail(fields[7]);
             cliente.setClienteDeste(Util.dateFormatter(fields[8]));
-            cliente.setAtivo(Boolean.valueOf(fields[9]));
+            cliente.setStatus(Boolean.valueOf(fields[9]));
 
             Endereco endereco = new Endereco();
             endereco.setLogradouro(fields[10]);
-            endereco.setNumero(Integer.valueOf(fields[11]));
+            endereco.setNumero(fields[11]);
             endereco.setBairro(fields[12]);
             endereco.setCidade(fields[13]);
             endereco.setEstado(fields[14]);
-            endereco.setCep(Integer.valueOf(fields[15]));
+            endereco.setCep(fields[15]);
 
             cliente.setEndereco(endereco);
 
-            clienteService.incluir(cliente);
+            try {
+                clienteService.incluir(cliente);
+                System.out.println("  [OK] Cliente " + cliente.getNome() + " incluído com sucesso.");
+            } catch (Exception e) {
+                System.err.println("  [ERRO] Problema na inclusão do cliente " + cliente.getNome() + ": " + e.getMessage());
+            }
 
             readLine = bufferedReader.readLine();
         }
 
+        System.out.println("[ClienteLoader] Carregamento concluído.");
+
+        System.out.println("--- Clientes Carregados ---");
         clienteService.obterLista().forEach(System.out::println);
+        System.out.println("-----------------------------");
 
         bufferedReader.close();
     }

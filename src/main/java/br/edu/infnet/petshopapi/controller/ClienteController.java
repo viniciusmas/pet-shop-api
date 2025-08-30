@@ -2,6 +2,7 @@ package br.edu.infnet.petshopapi.controller;
 
 import br.edu.infnet.petshopapi.model.domain.Cliente;
 import br.edu.infnet.petshopapi.model.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> incluir(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> incluir(@Valid @RequestBody Cliente cliente) {
 
         Cliente clienteNovo = clienteService.incluir(cliente);
 
@@ -27,7 +28,7 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Cliente> alterar(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> alterar(@Valid @PathVariable Integer id, @Valid @RequestBody Cliente cliente) {
 
         Cliente clienteAlterado = clienteService.alterar(id, cliente);
 
@@ -66,6 +67,14 @@ public class ClienteController {
     public ResponseEntity<Cliente> inativar(@PathVariable Integer id) {
 
         Cliente cliente = clienteService.inativar(id);
+
+        return ResponseEntity.ok(cliente);
+    }
+
+    @GetMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<Cliente> obterPorCpf(@PathVariable String cpf) {
+
+        Cliente cliente = clienteService.obterPorCpf(cpf);
 
         return ResponseEntity.ok(cliente);
     }
