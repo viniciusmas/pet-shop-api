@@ -1,6 +1,6 @@
 package br.edu.infnet.petshopapi.controller;
 
-import br.edu.infnet.petshopapi.controller.dto.IdadeDTO;
+import br.edu.infnet.petshopapi.model.dto.IdadeDTO;
 import br.edu.infnet.petshopapi.model.domain.Pet;
 import br.edu.infnet.petshopapi.model.service.PetService;
 import jakarta.validation.Valid;

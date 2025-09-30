@@ -1,11 +1,15 @@
 package br.edu.infnet.petshopapi.model.service;
 
 import br.edu.infnet.petshopapi.model.domain.Cliente;
+import br.edu.infnet.petshopapi.model.domain.Endereco;
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteInvalidoException;
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteNaoEncontradoException;
+import br.edu.infnet.petshopapi.model.dto.EnderecoDTO;
 import br.edu.infnet.petshopapi.model.repository.ClienteRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -13,9 +17,11 @@ import java.util.List;
 public class ClienteService implements CrudService<Cliente,Integer> {
 
     private final ClienteRepository clienteRepository;
+    private final ViaCepService viaCepService;
 
-    public ClienteService(ClienteRepository clienteRepository) {
+    public ClienteService(ClienteRepository clienteRepository, ViaCepService viaCepService) {
         this.clienteRepository = clienteRepository;
+        this.viaCepService = viaCepService;
     }
 
     private void validar(Cliente cliente) {
@@ -27,6 +33,8 @@ public class ClienteService implements CrudService<Cliente,Integer> {
         if (cliente.getNome() == null || cliente.getNome().trim().isEmpty()) {
             throw new ClienteInvalidoException("O nome do cliente é uma informação obrigatória!");
         }
+
+        clienteRepository.findByCpf(cliente.getCpf()).ifPresent(c -> { throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado."); });
     }
 
     @Override
@@ -38,6 +46,14 @@ public class ClienteService implements CrudService<Cliente,Integer> {
         if (cliente.getId() != null && cliente.getId() != 0) {
             throw new IllegalArgumentException("Um novo cliente não pode ter um ID na inclusão!");
         }
+
+        EnderecoDTO enderecoDTO = viaCepService.getEndereco(cliente.getCepConsulta().replace("-", ""));
+
+        if (enderecoDTO == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CEP inválido ou não encontrado.");
+        }
+
+        cliente.setEndereco(new Endereco(enderecoDTO));
 
         return clienteRepository.save(cliente);
     }
@@ -106,5 +122,4 @@ public class ClienteService implements CrudService<Cliente,Integer> {
 
         return clienteRepository.findByCpf(cpf).orElseThrow(() -> new ClienteNaoEncontradoException("O cliente com CPF " + cpf + " não foi encontrado!"));
     }
-
 }

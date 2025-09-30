@@ -1,4 +1,4 @@
-package br.edu.infnet.petshopapi.controller.dto;
+package br.edu.infnet.petshopapi.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

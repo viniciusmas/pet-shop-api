@@ -1,6 +1,5 @@
 package br.edu.infnet.petshopapi;
 
-import br.edu.infnet.petshopapi.model.domain.Endereco;
 import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioInvalidoException;
 import br.edu.infnet.petshopapi.model.service.FuncionarioService;
@@ -18,7 +17,6 @@ import java.math.BigDecimal;
 public class FuncionarioLoader implements ApplicationRunner {
 
     private final FuncionarioService funcionarioService;
-
 
     public FuncionarioLoader(FuncionarioService funcionarioService) {
         this.funcionarioService = funcionarioService;
@@ -47,19 +45,10 @@ public class FuncionarioLoader implements ApplicationRunner {
             funcionario.setEstadoCivil(fields[5]);
             funcionario.setTelefone(fields[6]);
             funcionario.setEmail(fields[7]);
-            funcionario.setCargo(fields[14]);
-            funcionario.setSalario(new BigDecimal(fields[15]));
-            funcionario.setBonus(new BigDecimal(fields[16]));
-
-            Endereco endereco = new Endereco();
-            endereco.setLogradouro(fields[8]);
-            endereco.setNumero(fields[9]);
-            endereco.setBairro(fields[10]);
-            endereco.setCidade(fields[11]);
-            endereco.setEstado(fields[12]);
-            endereco.setCep(fields[13]);
-
-            funcionario.setEndereco(endereco);
+            funcionario.setCargo(fields[9]);
+            funcionario.setSalario(new BigDecimal(fields[10]));
+            funcionario.setBonus(new BigDecimal(fields[11]));
+            funcionario.setCepConsulta(fields[8]);
 
             try {
                 funcionarioService.incluir(funcionario);

@@ -1,7 +1,6 @@
 package br.edu.infnet.petshopapi;
 
 import br.edu.infnet.petshopapi.model.domain.Cliente;
-import br.edu.infnet.petshopapi.model.domain.Endereco;
 import br.edu.infnet.petshopapi.model.service.ClienteService;
 import br.edu.infnet.petshopapi.util.Util;
 import org.springframework.boot.ApplicationArguments;
@@ -46,16 +45,7 @@ public class ClienteLoader implements ApplicationRunner {
             cliente.setEmail(fields[7]);
             cliente.setClienteDeste(Util.dateFormatter(fields[8]));
             cliente.setStatus(Boolean.valueOf(fields[9]));
-
-            Endereco endereco = new Endereco();
-            endereco.setLogradouro(fields[10]);
-            endereco.setNumero(fields[11]);
-            endereco.setBairro(fields[12]);
-            endereco.setCidade(fields[13]);
-            endereco.setEstado(fields[14]);
-            endereco.setCep(fields[15]);
-
-            cliente.setEndereco(endereco);
+            cliente.setCepConsulta(fields[10]);
 
             try {
                 clienteService.incluir(cliente);

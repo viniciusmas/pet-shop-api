@@ -16,12 +16,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/clientes/3",
+							"raw": "http://localhost:8081/api/clientes/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"clientes",
@@ -37,12 +37,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/clientes/cpf/123.456.789-01",
+							"raw": "http://localhost:8081/api/clientes/cpf/123.456.789-01",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"clientes",
@@ -59,12 +59,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/clientes",
+							"raw": "http://localhost:8081/api/clientes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"clientes"
@@ -80,7 +80,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n\r\n    \"rg\": \"98457880\",\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": \"98789478\",\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua ERP\",\r\n        \"numero\": \"12\",\r\n        \"bairro\": \"Bairro C\",\r\n        \"cidade\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"cep\": \"21558789\"\r\n    },\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"status\": true\r\n}",
+							"raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n    \"cpf\": \"094.688.557-59\",\r\n    \"rg\": \"98457880\",\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": \"2198789478\",\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"status\": true,\r\n    \"cepConsulta\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,12 +88,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/clientes",
+							"raw": "http://localhost:8081/api/clientes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"clientes"
@@ -117,12 +117,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/clientes/3",
+							"raw": "http://localhost:8081/api/clientes/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"clientes",
@@ -138,12 +138,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/clientes/3",
+							"raw": "http://localhost:8081/api/clientes/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"clientes",
@@ -186,12 +186,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/funcionarios/3",
+							"raw": "http://localhost:8081/api/funcionarios/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"funcionarios",
@@ -207,12 +207,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/funcionarios",
+							"raw": "http://localhost:8081/api/funcionarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"funcionarios"
@@ -236,12 +236,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/funcionarios",
+							"raw": "http://localhost:8081/api/funcionarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"funcionarios"
@@ -265,12 +265,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/funcionarios/3",
+							"raw": "http://localhost:8081/api/funcionarios/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"funcionarios",
@@ -290,12 +290,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/funcionarios/3",
+							"raw": "http://localhost:8081/api/funcionarios/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"funcionarios",
@@ -308,7 +308,7 @@
 			]
 		},
 		{
-			"name": "Pet",
+			"name": "pet",
 			"item": [
 				{
 					"name": "obterPorId",
@@ -316,12 +316,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/pets/1",
+							"raw": "http://localhost:8081/api/pets/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"pets",
@@ -337,12 +337,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/pets",
+							"raw": "http://localhost:8081/api/pets",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"pets"
@@ -369,16 +369,38 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/pets/idades",
+							"raw": "http://localhost:8081/api/pets/idades",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8081",
 							"path": [
 								"api",
 								"pets",
 								"idades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterPorNomeContem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/pets/contem/Sp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"pets",
+								"contem",
+								"Sp"
 							]
 						}
 					},
@@ -463,6 +485,32 @@
 								"api",
 								"pets",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "viaCep",
+			"item": [
+				{
+					"name": "obterEndereco",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/enderecos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"enderecos",
+								""
 							]
 						}
 					},

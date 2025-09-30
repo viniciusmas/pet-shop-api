@@ -1,2 +1,2 @@
-Luana Ramos;543.098.765-43;213133;22-12-1981 00:00:00;Feminino;Casada;(21)98642-9890;luana@gmail.com;Rua X;31;Bairro G;Rio de Janeiro;RJ;51690-102;Gerente;10000;1000
-Caio Silva;678.345.641-23;347521;10-06-1991 00:00:00;Masculino;Casado;(21)98765-1235;caio@gmail.com;Rua Y;1;Bairro E;Rio de Janeiro;RJ;56300-002;Caixa;1000;100
+Luana Ramos;543.098.765-43;213133;22-12-1981 00:00:00;Feminino;Casada;(21)98642-9890;luana@gmail.com;22640-102;Gerente;10000;1000
+Caio Silva;678.345.641-23;347521;10-06-1991 00:00:00;Masculino;Casado;(21)98765-1235;caio@gmail.com;22640-102;Caixa;1000;100

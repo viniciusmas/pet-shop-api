@@ -1,21 +1,16 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.Valid;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.CascadeType;
 
 @Setter
 @Getter
@@ -56,6 +51,9 @@ public abstract class Pessoa {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
+
+    @Transient
+    private String cepConsulta;
 
     @Override
     public String toString() {

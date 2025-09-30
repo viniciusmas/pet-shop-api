@@ -1,11 +1,15 @@
 package br.edu.infnet.petshopapi.model.service;
 
+import br.edu.infnet.petshopapi.model.domain.Endereco;
 import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioInvalidoException;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioNaoEncontradoException;
+import br.edu.infnet.petshopapi.model.dto.EnderecoDTO;
 import br.edu.infnet.petshopapi.model.repository.FuncionarioRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -13,9 +17,11 @@ import java.util.List;
 public class FuncionarioService implements CrudService<Funcionario, Integer> {
 
     private final FuncionarioRepository funcionarioRepository;
+    private final ViaCepService viaCepService;
 
-    public FuncionarioService(FuncionarioRepository funcionarioRepository) {
+    public FuncionarioService(FuncionarioRepository funcionarioRepository, ViaCepService viaCepService) {
         this.funcionarioRepository = funcionarioRepository;
+        this.viaCepService = viaCepService;
     }
 
     private void validar(Funcionario funcionario) {
@@ -38,6 +44,14 @@ public class FuncionarioService implements CrudService<Funcionario, Integer> {
         if (funcionario.getId() != null && funcionario.getId() != 0){
             throw new IllegalArgumentException("Um novo funcionário não pode ter um ID na inclusão!");
         }
+
+        EnderecoDTO enderecoDTO = viaCepService.getEndereco(funcionario.getCepConsulta().replace("-", ""));
+
+        if (enderecoDTO == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CEP inválido ou não encontrado.");
+        }
+
+        funcionario.setEndereco(new Endereco(enderecoDTO));
 
         return funcionarioRepository.save(funcionario);
     }
