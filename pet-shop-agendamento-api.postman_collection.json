@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "criarAgendamento - 2",
+			"name": "criarAgendamento",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -29,35 +29,6 @@
 					],
 					"port": "8080",
 					"path": [
-						"agendamentos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "criarAgendamento - 1",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"idCliente\": 1,\r\n    \"nomeCliente\": \"Vinicius\",\r\n    \"pet\": \"Spake\",\r\n    \"servico\": \"BANHO\",\r\n    \"idFuncionario\": 1,\r\n    \"nomeFuncionario\": \"Luana\",\r\n    \"dataHora\": \"2025-09-29T10:00:00\",\r\n    \"status\": \"AGENDADO\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8081/api/agendamentos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
 						"agendamentos"
 					]
 				}
