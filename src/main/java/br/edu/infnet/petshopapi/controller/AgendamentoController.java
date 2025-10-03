@@ -1,5 +1,6 @@
 package br.edu.infnet.petshopapi.controller;
 
+import br.edu.infnet.petshopapi.model.domain.Agendamento;
 import br.edu.infnet.petshopapi.model.dto.AgendamentoRequestDTO;
 import br.edu.infnet.petshopapi.model.dto.AgendamentoResponseDTO;
 import br.edu.infnet.petshopapi.model.service.AgendamentoService;
@@ -22,6 +23,6 @@ public class AgendamentoController {
 
     @PostMapping
     public ResponseEntity<AgendamentoResponseDTO> criarAgendamento(@RequestBody AgendamentoRequestDTO agendamentoRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(agendamentoService.criarAgendamento(agendamentoRequestDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(agendamentoService.criarAgendamento(new Agendamento(agendamentoRequestDTO)));
     }
 }
