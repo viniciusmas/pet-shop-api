@@ -4,6 +4,7 @@ import br.edu.infnet.petshopapi.model.domain.Cliente;
 import br.edu.infnet.petshopapi.model.domain.Pet;
 import br.edu.infnet.petshopapi.model.domain.TipoEspecie;
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteNaoEncontradoException;
+import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.service.ClienteService;
 import br.edu.infnet.petshopapi.model.service.PetService;
 import org.springframework.boot.ApplicationArguments;
@@ -48,7 +49,7 @@ public class PetLoader implements ApplicationRunner {
             Double peso = Double.valueOf(fields[4]);
             String cpf = fields[5];
 
-            Cliente tutor;
+            ClienteResponseDTO tutor;
 
             try {
                 tutor =  clienteService.obterPorCpf(cpf);
@@ -69,7 +70,7 @@ public class PetLoader implements ApplicationRunner {
             pet.setRaca(raca);
             pet.setIdade(idade);
             pet.setPeso(peso);
-            pet.setTutor(tutor);
+            pet.setTutor(new Cliente(tutor));
 
             try {
                 petService.incluir(pet);

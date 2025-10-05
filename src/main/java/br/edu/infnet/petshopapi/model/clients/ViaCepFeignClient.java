@@ -1,6 +1,6 @@
 package br.edu.infnet.petshopapi.model.clients;
 
-import br.edu.infnet.petshopapi.model.dto.EnderecoDTO;
+import br.edu.infnet.petshopapi.model.dto.EnderecoRequestDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface ViaCepFeignClient {
 
     @GetMapping("/{cep}/json/")
-    EnderecoDTO findByCep(@PathVariable String cep);
+    EnderecoRequestDTO findByCep(@PathVariable String cep);
 }

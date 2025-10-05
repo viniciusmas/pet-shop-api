@@ -1,6 +1,6 @@
 package br.edu.infnet.petshopapi.controller;
 
-import br.edu.infnet.petshopapi.model.dto.EnderecoDTO;
+import br.edu.infnet.petshopapi.model.dto.EnderecoRequestDTO;
 import br.edu.infnet.petshopapi.model.service.ViaCepService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +20,10 @@ public class EnderecoController {
 
 
     @GetMapping(value = "/{cep}")
-    public ResponseEntity<EnderecoDTO> obterEndereco(@PathVariable String cep) {
+    public ResponseEntity<EnderecoRequestDTO> obterEndereco(@PathVariable String cep) {
 
-        EnderecoDTO enderecoDTO = viaCepService.getEndereco(cep);
+        EnderecoRequestDTO enderecoRequestDTO = viaCepService.getEndereco(cep);
 
-        return ResponseEntity.ok(enderecoDTO);
+        return ResponseEntity.ok(enderecoRequestDTO);
     }
 }

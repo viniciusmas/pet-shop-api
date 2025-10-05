@@ -1,6 +1,6 @@
 package br.edu.infnet.petshopapi.model.service;
 
-import br.edu.infnet.petshopapi.model.dto.EnderecoDTO;
+import br.edu.infnet.petshopapi.model.dto.EnderecoRequestDTO;
 import br.edu.infnet.petshopapi.model.clients.ViaCepFeignClient;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class ViaCepService {
         this.viaCepFeignClient = viaCepFeignClient;
     }
 
-    public EnderecoDTO getEndereco(String cep) {
+    public EnderecoRequestDTO getEndereco(String cep) {
         return viaCepFeignClient.findByCep(cep);
     }
 }

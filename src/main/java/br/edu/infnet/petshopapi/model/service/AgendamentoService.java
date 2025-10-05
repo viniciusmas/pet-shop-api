@@ -6,6 +6,7 @@ import br.edu.infnet.petshopapi.model.domain.Cliente;
 import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.domain.Pet;
 import br.edu.infnet.petshopapi.model.dto.AgendamentoResponseDTO;
+import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.repository.AgendamentoRepository;
 import org.springframework.stereotype.Service;
 import java.time.ZonedDateTime;
@@ -55,9 +56,9 @@ public class AgendamentoService {
     }
 
     private void abterDados(Agendamento agendamento) {
-        Cliente cliente = clienteService.obterPorId(agendamento.getCliente().getId());
+        ClienteResponseDTO clienteResponseDTO = clienteService.obterPorId(agendamento.getCliente().getId());
         Funcionario funcionario = funcionarioService.obterPorId(agendamento.getFuncionario().getId());
-        agendamento.setCliente(cliente);
+        agendamento.setCliente(new Cliente(clienteResponseDTO));
         agendamento.setFuncionario(funcionario);
     }
 }

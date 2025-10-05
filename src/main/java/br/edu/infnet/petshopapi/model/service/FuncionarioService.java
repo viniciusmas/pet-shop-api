@@ -4,7 +4,7 @@ import br.edu.infnet.petshopapi.model.domain.Endereco;
 import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioInvalidoException;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioNaoEncontradoException;
-import br.edu.infnet.petshopapi.model.dto.EnderecoDTO;
+import br.edu.infnet.petshopapi.model.dto.EnderecoRequestDTO;
 import br.edu.infnet.petshopapi.model.repository.FuncionarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -45,13 +45,13 @@ public class FuncionarioService implements CrudService<Funcionario, Integer> {
             throw new IllegalArgumentException("Um novo funcionário não pode ter um ID na inclusão!");
         }
 
-        EnderecoDTO enderecoDTO = viaCepService.getEndereco(funcionario.getCepConsulta().replace("-", ""));
+        EnderecoRequestDTO enderecoRequestDTO = viaCepService.getEndereco(funcionario.getCepConsulta().replace("-", ""));
 
-        if (enderecoDTO == null) {
+        if (enderecoRequestDTO == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CEP inválido ou não encontrado.");
         }
 
-        funcionario.setEndereco(new Endereco(enderecoDTO));
+        funcionario.setEndereco(new Endereco(enderecoRequestDTO, null));
 
         return funcionarioRepository.save(funcionario);
     }
