@@ -528,7 +528,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idCliente\": 1,\r\n    \"nomeCliente\": \"Vinicius Moreira\",\r\n    \"pet\": \"Spake\",\r\n    \"servico\": \"BANHO\",\r\n    \"idFuncionario\": 1,\r\n    \"nomeFuncionario\": \"Luana Ramos\",\r\n    \"dataHora\": \"2025-10-05T10:00:00\",\r\n    \"status\": \"AGENDADO\"\r\n}",
+							"raw": "{\r\n    \"cliente\": { \"id\": 1 },\r\n    \"pet\": { \"id\": 1 },\r\n    \"funcionario\": { \"id\": 1 },\r\n    \"servico\": \"BANHO\",\r\n    \"dataHora\": \"2025-10-05T10:00:00\",\r\n    \"status\": \"AGENDADO\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
