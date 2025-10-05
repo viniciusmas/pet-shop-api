@@ -1,5 +1,6 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,10 +39,21 @@ public class Pet {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente tutor;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private java.util.List<Agendamento> agendamentos;
+
     @Override
     public String toString() {
         return String.format("Pet {id = %d, Nome = %s, Tipo da Espécie = %s, Raça = %s, Idade = %d, Peso = %.2f, Tutor = %s}",
                 id, nome, tipoEspecie != null ? tipoEspecie.name() : "N/A", raca, idade, peso,
                 tutor != null ? String.format("%d - %s", tutor.getId(), tutor.getNome()) : "N/A");
+    }
+
+    public static Pet getPet(Agendamento agendamento) {
+        return agendamento.getCliente().getPets().stream()
+                .filter(p -> p.getId().equals(agendamento.getPet().getId()))
+                .findFirst()
+                .orElseThrow();
     }
 }

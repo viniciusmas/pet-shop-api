@@ -1,6 +1,10 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,6 +32,10 @@ public class Funcionario extends Pessoa {
     @DecimalMin(value = "0.01", message = "O bônus do funcionário deve ser maior que zero.")
     @Digits(integer = 10, fraction = 2, message = "O bônus do funcionário deve ter no máximo 10 digitos inteiros e 2 decimais.")
     private BigDecimal bonus;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Agendamento> agendamentos;
 
     @Override
     public String toString() {

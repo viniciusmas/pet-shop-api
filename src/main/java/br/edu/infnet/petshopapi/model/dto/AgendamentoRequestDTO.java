@@ -1,5 +1,6 @@
 package br.edu.infnet.petshopapi.model.dto;
 
+import br.edu.infnet.petshopapi.model.domain.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,20 +10,16 @@ import java.time.LocalDateTime;
 @Setter
 public class AgendamentoRequestDTO {
 
-    private Integer idCliente;
+    private Cliente cliente;
 
-    private String nomeCliente;
+    private Pet pet;
 
-    private String pet;
+    private Funcionario funcionario;
 
-    private String servico;
-
-    private Integer idFuncionario;
-
-    private String nomeFuncionario;
+    private TipoServico servico;
 
     private LocalDateTime dataHora;
 
-    private String status;
+    private StatusAgendamento status;
 
 }
