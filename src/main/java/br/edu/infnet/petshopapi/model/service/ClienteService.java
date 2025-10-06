@@ -5,7 +5,6 @@ import br.edu.infnet.petshopapi.model.domain.Endereco;
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteInvalidoException;
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteNaoEncontradoException;
 import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
-import br.edu.infnet.petshopapi.model.dto.EnderecoRequestDTO;
 import br.edu.infnet.petshopapi.model.repository.ClienteRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ public class ClienteService {
             throw new IllegalArgumentException("Um novo cliente não pode ter um ID na inclusão!");
         }
 
-        cliente.setEndereco(new Endereco(getEnderecoViaCep(cliente), null));
+        cliente.setEndereco(new Endereco(viaCepService.getEnderecoViaCep(cliente.getCepConsulta()), new ClienteResponseDTO()));
 
         return new ClienteResponseDTO(clienteRepository.save(cliente));
     }
@@ -53,7 +52,7 @@ public class ClienteService {
 
         clienteNovo.setId(id);
 
-        clienteNovo.setEndereco(new Endereco(getEnderecoViaCep(clienteNovo), clienteAntigo));
+        clienteNovo.setEndereco(new Endereco(viaCepService.getEnderecoViaCep(clienteNovo.getCepConsulta()), clienteAntigo));
 
         return new ClienteResponseDTO(clienteRepository.save(clienteNovo));
     }
@@ -125,15 +124,5 @@ public class ClienteService {
         }
 
         clienteRepository.findByCpf(cliente.getCpf()).ifPresent(c -> { throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado."); });
-    }
-
-    private EnderecoRequestDTO getEnderecoViaCep(Cliente cliente) {
-
-        EnderecoRequestDTO enderecoRequestDTO = viaCepService.getEndereco(cliente.getCepConsulta().replace("-", ""));
-
-        if (enderecoRequestDTO == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CEP inválido ou não encontrado.");
-        }
-        return enderecoRequestDTO;
     }
 }

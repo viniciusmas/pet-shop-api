@@ -18,12 +18,9 @@ public class EnderecoController {
         this.viaCepService = viaCepService;
     }
 
-
     @GetMapping(value = "/{cep}")
     public ResponseEntity<EnderecoRequestDTO> obterEndereco(@PathVariable String cep) {
-
-        EnderecoRequestDTO enderecoRequestDTO = viaCepService.getEndereco(cep);
-
+        EnderecoRequestDTO enderecoRequestDTO = viaCepService.getEnderecoViaCep(cep);
         return ResponseEntity.ok(enderecoRequestDTO);
     }
 }

@@ -2,6 +2,7 @@ package br.edu.infnet.petshopapi.model.domain;
 
 import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.dto.EnderecoRequestDTO;
+import br.edu.infnet.petshopapi.model.dto.FuncionarioResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +34,16 @@ public class Endereco {
     public Endereco() {}
 
     public Endereco (EnderecoRequestDTO enderecoRequestDTO, ClienteResponseDTO clienteAntigo) {
-        if (clienteAntigo != null) this.setId(clienteAntigo.getEndereco().getId());
+        if (clienteAntigo.getEndereco() != null) this.setId(clienteAntigo.getEndereco().getId());
+        setEndereco(enderecoRequestDTO);
+    }
+
+    public Endereco (EnderecoRequestDTO enderecoRequestDTO, FuncionarioResponseDTO funcionarioAntigo) {
+        if (funcionarioAntigo.getEndereco() != null) this.setId(funcionarioAntigo.getEndereco().getId());
+        setEndereco(enderecoRequestDTO);
+    }
+
+    private void setEndereco(EnderecoRequestDTO enderecoRequestDTO) {
         this.setCep(enderecoRequestDTO.getCep());
         this.setLogradouro(enderecoRequestDTO.getLogradouro());
         this.setBairro(enderecoRequestDTO.getBairro());

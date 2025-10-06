@@ -40,6 +40,8 @@ public class ClienteResponseDTO {
 
     private List<Pet> pets;
 
+    public ClienteResponseDTO() {}
+
     public ClienteResponseDTO(Cliente cliente) {
         this.setId(cliente.getId());
         this.setNome(cliente.getNome());

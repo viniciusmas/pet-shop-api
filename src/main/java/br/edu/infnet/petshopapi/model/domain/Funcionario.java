@@ -1,14 +1,12 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import br.edu.infnet.petshopapi.model.dto.FuncionarioRequestDTO;
+import br.edu.infnet.petshopapi.model.dto.FuncionarioResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,18 +18,46 @@ import java.util.List;
 @Entity
 public class Funcionario extends Pessoa {
 
-    @NotBlank(message = "O Cargo é obrigatório.")
     private String cargo;
 
-    @NotNull(message = "O salário do funcionário é obrigatório.")
-    @DecimalMin(value = "0.01", message = "O salário do funcionário deve ser maior que zero.")
-    @Digits(integer = 10, fraction = 2, message = "O salário do funcionário deve ter no máximo 10 digitos inteiros e 2 decimais.")
     private BigDecimal salario;
 
-    @NotNull(message = "O bônus do funcionário é obrigatório.")
-    @DecimalMin(value = "0.01", message = "O bônus do funcionário deve ser maior que zero.")
-    @Digits(integer = 10, fraction = 2, message = "O bônus do funcionário deve ter no máximo 10 digitos inteiros e 2 decimais.")
     private BigDecimal bonus;
+
+    public Funcionario() {}
+
+    public Funcionario(FuncionarioRequestDTO funcionarioRequestDTO) {
+        this.setNome(funcionarioRequestDTO.getNome());
+        this.setCpf(funcionarioRequestDTO.getCpf());
+        this.setRg(funcionarioRequestDTO.getRg());
+        this.setDataNascimento(funcionarioRequestDTO.getDataNascimento());
+        this.setSexo(funcionarioRequestDTO.getSexo());
+        this.setEstadoCivil(funcionarioRequestDTO.getEstadoCivil());
+        this.setTelefone(funcionarioRequestDTO.getTelefone());
+        this.setEmail(funcionarioRequestDTO.getEmail());
+        this.setCargo(funcionarioRequestDTO.getCargo());
+        this.setSalario(funcionarioRequestDTO.getSalario());
+        this.setBonus(funcionarioRequestDTO.getBonus());
+        this.setCepConsulta(funcionarioRequestDTO.getCepConsulta());
+    }
+
+    public Funcionario(FuncionarioResponseDTO funcionarioResponseDTO) {
+        this.setId(funcionarioResponseDTO.getId());
+        this.setNome(funcionarioResponseDTO.getNome());
+        this.setCpf(funcionarioResponseDTO.getCpf());
+        this.setRg(funcionarioResponseDTO.getRg());
+        this.setDataNascimento(funcionarioResponseDTO.getDataNascimento());
+        this.setSexo(funcionarioResponseDTO.getSexo());
+        this.setEstadoCivil(funcionarioResponseDTO.getEstadoCivil());
+        this.setTelefone(funcionarioResponseDTO.getTelefone());
+        this.setEmail(funcionarioResponseDTO.getEmail());
+        this.setEndereco(funcionarioResponseDTO.getEndereco());
+        this.setCargo(funcionarioResponseDTO.getCargo());
+        this.setSalario(funcionarioResponseDTO.getSalario());
+        this.setBonus(funcionarioResponseDTO.getBonus());
+        this.setCepConsulta(funcionarioResponseDTO.getCepConsulta());
+    }
+    
 
     @JsonIgnore
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -46,5 +72,4 @@ public class Funcionario extends Pessoa {
     public String obterTipo() {
         return "Funcionario";
     }
-
 }
