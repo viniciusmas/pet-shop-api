@@ -1,5 +1,7 @@
 package br.edu.infnet.petshopapi.model.domain;
 
+import br.edu.infnet.petshopapi.model.dto.PetRequestDTO;
+import br.edu.infnet.petshopapi.model.dto.PetResponseDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -42,6 +44,26 @@ public class Pet {
     @JsonIgnore
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private java.util.List<Agendamento> agendamentos;
+
+    public Pet() {}
+
+    public Pet(PetRequestDTO petRequestDTO) {
+        this.setNome(petRequestDTO.getNome());
+        this.setTipoEspecie(petRequestDTO.getTipoEspecie());
+        this.setRaca(petRequestDTO.getRaca());
+        this.setIdade(petRequestDTO.getIdade());
+        this.setPeso(petRequestDTO.getPeso());
+        this.setTutor(petRequestDTO.getTutor());
+    }
+
+    public Pet(PetResponseDTO pet) {
+        this.setNome(pet.getNome());
+        this.setTipoEspecie(pet.getTipoEspecie());
+        this.setRaca(pet.getRaca());
+        this.setIdade(pet.getIdade());
+        this.setPeso(pet.getPeso());
+        this.setTutor(pet.getTutor());
+    }
 
     @Override
     public String toString() {
