@@ -32,14 +32,14 @@ public class ClienteController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ClienteResponseDTO> alterar(@Valid @PathVariable Integer id, @Valid @RequestBody ClienteRequestDTO clienteRequestDTO) {
         ClienteResponseDTO clienteAlterado = clienteService.alterar(id, new Cliente(clienteRequestDTO));
-        return ResponseEntity.ok(clienteAlterado);
+        return ResponseEntity.status(HttpStatus.OK).body(clienteAlterado);
     }
 
     @DeleteMapping(value = "/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         clienteService.excluir(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping
@@ -47,30 +47,30 @@ public class ClienteController {
     public ResponseEntity<List<ClienteResponseDTO>> obterLista() {
         List<ClienteResponseDTO> clientes = clienteService.obterLista();
         if (clientes.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        return ResponseEntity.ok(clientes);
+        return ResponseEntity.status(HttpStatus.OK).body(clientes);
     }
 
     @GetMapping(value = "/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<ClienteResponseDTO> obterPorId(@PathVariable Integer id) {
         ClienteResponseDTO cliente = clienteService.obterPorId(id);
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.status(HttpStatus.OK).body(cliente);
     }
 
     @PatchMapping(value = "/{id}/inativar")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ClienteResponseDTO> inativar(@PathVariable Integer id) {
         ClienteResponseDTO cliente = clienteService.inativar(id);
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.status(HttpStatus.OK).body(cliente);
     }
 
     @GetMapping(value = "/cpf/{cpf}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<ClienteResponseDTO> obterPorCpf(@PathVariable String cpf) {
         ClienteResponseDTO cliente = clienteService.obterPorCpf(cpf);
-        return ResponseEntity.ok(cliente);
+        return ResponseEntity.status(HttpStatus.OK).body(cliente);
     }
 
 }

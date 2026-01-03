@@ -15,9 +15,11 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    Map<String, String> errors = new HashMap<>();
+
     @ExceptionHandler(ClienteInvalidoException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(ClienteInvalidoException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
@@ -28,7 +30,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ClienteNaoEncontradoException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(ClienteNaoEncontradoException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.NOT_FOUND.toString());
@@ -39,7 +41,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(FuncionarioInvalidoException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(FuncionarioInvalidoException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
@@ -50,7 +52,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(FuncionarioNaoEncontradoException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(FuncionarioNaoEncontradoException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.NOT_FOUND.toString());
@@ -61,7 +63,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PetNaoEncontradoException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(PetNaoEncontradoException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.NOT_FOUND.toString());
@@ -72,7 +74,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PetInvalidoException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(PetInvalidoException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
@@ -83,7 +85,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -96,7 +98,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(IllegalArgumentException ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
@@ -107,7 +109,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(Exception ex) {
-        Map<String, String> errors = new HashMap<>();
+        errors = new HashMap<>();
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.INTERNAL_SERVER_ERROR.toString());

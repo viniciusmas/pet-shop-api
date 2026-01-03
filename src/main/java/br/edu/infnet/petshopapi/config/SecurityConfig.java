@@ -38,20 +38,20 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**").permitAll()
 
-                        .requestMatchers(HttpMethod.GET, "/api/funcionarios").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.POST, "/api/funcionarios").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/funcionarios").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/funcionarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/funcionarios/").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/funcionarios/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/funcionarios/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/funcionarios/").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/clientes").hasAnyRole("ADMIN", "USER")
-                        //.requestMatchers(HttpMethod.POST, "/api/clientes/").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/clientes").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/clientes").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/clientes/").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/clientes/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/clientes/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/clientes/").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/pets").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.POST, "/api/pets").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/pets").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/pets").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/pets/").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/pets/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/pets/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/pets/").hasRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )

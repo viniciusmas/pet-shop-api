@@ -34,14 +34,14 @@ public class PetController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PetResponseDTO> alterar(@PathVariable Integer id, @Valid @RequestBody PetRequestDTO petRequestDTO) {
         PetResponseDTO petAlterado = petService.alterar(id, new Pet(petRequestDTO));
-        return ResponseEntity.ok(petAlterado);
+        return ResponseEntity.status(HttpStatus.OK).body(petAlterado);
     }
 
     @DeleteMapping(value = "/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         petService.excluir(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @GetMapping
@@ -49,29 +49,29 @@ public class PetController {
     public ResponseEntity<List<PetResponseDTO>> obterLista() {
         List<PetResponseDTO> pets = petService.obterLista();
         if (pets.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        return ResponseEntity.ok(pets);
+        return ResponseEntity.status(HttpStatus.OK).body(pets);
     }
 
     @GetMapping(value = "/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<PetResponseDTO> obterPorId(@PathVariable Integer id) {
         PetResponseDTO pet = petService.obterPorId(id);
-        return ResponseEntity.ok(pet);
+        return ResponseEntity.status(HttpStatus.OK).body(pet);
     }
 
     @GetMapping(value = "/idades")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<PetResponseDTO>> obterPorIdades(@RequestBody IdadeDTO idadeDTO) {
         List<PetResponseDTO> pets = petService.obterPorIdades(idadeDTO.getIdadeMin(), idadeDTO.getIdadeMax());
-        return ResponseEntity.ok(pets);
+        return ResponseEntity.status(HttpStatus.OK).body(pets);
     }
 
     @GetMapping(value = "/contem/{nome}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<PetResponseDTO>> obterPorNomeContem(@PathVariable String nome) {
         List<PetResponseDTO> pet = petService.obterPorNomeContem(nome);
-        return ResponseEntity.ok(pet);
+        return ResponseEntity.status(HttpStatus.OK).body(pet);
     }
 }
