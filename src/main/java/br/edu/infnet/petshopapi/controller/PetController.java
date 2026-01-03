@@ -8,6 +8,7 @@ import br.edu.infnet.petshopapi.model.service.PetService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,24 +24,28 @@ public class PetController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PetResponseDTO> incluir(@Valid @RequestBody PetRequestDTO petRequestDTO) {
         PetResponseDTO petNovo = petService.incluir(new Pet(petRequestDTO));
         return ResponseEntity.status(HttpStatus.CREATED).body(petNovo);
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PetResponseDTO> alterar(@PathVariable Integer id, @Valid @RequestBody PetRequestDTO petRequestDTO) {
         PetResponseDTO petAlterado = petService.alterar(id, new Pet(petRequestDTO));
         return ResponseEntity.ok(petAlterado);
     }
 
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         petService.excluir(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<PetResponseDTO>> obterLista() {
         List<PetResponseDTO> pets = petService.obterLista();
         if (pets.isEmpty()) {
@@ -50,18 +55,21 @@ public class PetController {
     }
 
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<PetResponseDTO> obterPorId(@PathVariable Integer id) {
         PetResponseDTO pet = petService.obterPorId(id);
         return ResponseEntity.ok(pet);
     }
 
     @GetMapping(value = "/idades")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<PetResponseDTO>> obterPorIdades(@RequestBody IdadeDTO idadeDTO) {
         List<PetResponseDTO> pets = petService.obterPorIdades(idadeDTO.getIdadeMin(), idadeDTO.getIdadeMax());
         return ResponseEntity.ok(pets);
     }
 
     @GetMapping(value = "/contem/{nome}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<PetResponseDTO>> obterPorNomeContem(@PathVariable String nome) {
         List<PetResponseDTO> pet = petService.obterPorNomeContem(nome);
         return ResponseEntity.ok(pet);

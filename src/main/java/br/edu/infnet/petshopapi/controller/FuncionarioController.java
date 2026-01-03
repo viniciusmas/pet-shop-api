@@ -7,6 +7,7 @@ import br.edu.infnet.petshopapi.model.service.FuncionarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,24 +23,28 @@ public class FuncionarioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<FuncionarioResponseDTO> incluir(@Valid @RequestBody FuncionarioRequestDTO funcionarioRequestDTO) {
         FuncionarioResponseDTO funcionarioNovo = funcionarioService.incluir(new Funcionario(funcionarioRequestDTO));
         return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioNovo);
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<FuncionarioResponseDTO> alterar(@PathVariable Integer id, @Valid @RequestBody FuncionarioRequestDTO funcionarioRequestDTO) {
         FuncionarioResponseDTO funcionarioAlterado = funcionarioService.alterar(id, new Funcionario(funcionarioRequestDTO));
         return ResponseEntity.ok(funcionarioAlterado);
     }
 
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         funcionarioService.excluir(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<FuncionarioResponseDTO>> obterLista() {
         List<FuncionarioResponseDTO> funcionarios = funcionarioService.obterLista();
         if (funcionarios.isEmpty()) {
@@ -49,6 +54,7 @@ public class FuncionarioController {
     }
 
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<FuncionarioResponseDTO> obterPorId(@PathVariable Integer id) {
         FuncionarioResponseDTO funcionario = funcionarioService.obterPorId(id);
         return ResponseEntity.ok(funcionario);
