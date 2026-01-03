@@ -2,6 +2,7 @@ package br.edu.infnet.petshopapi.model.service;
 
 import br.edu.infnet.petshopapi.model.clients.GoogleAuthClient;
 import br.edu.infnet.petshopapi.model.dto.GoogleTokenDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class GoogleTokenService {
 
     @Value("${google.auth.client.id}")
@@ -25,10 +27,6 @@ public class GoogleTokenService {
     private Instant expiresAt;
 
     private final GoogleAuthClient googleAuthClient;
-
-    public GoogleTokenService(GoogleAuthClient googleAuthClient) {
-        this.googleAuthClient = googleAuthClient;
-    }
 
     public String getValidAccessToken() {
         if (accessToken == null || Instant.now().isAfter(expiresAt)) {

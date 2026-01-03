@@ -3,6 +3,7 @@ package br.edu.infnet.petshopapi;
 import br.edu.infnet.petshopapi.model.domain.Cliente;
 import br.edu.infnet.petshopapi.model.service.ClienteService;
 import br.edu.infnet.petshopapi.util.Util;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -12,13 +13,10 @@ import java.io.FileReader;
 
 @Order(1)
 @Component
+@RequiredArgsConstructor
 public class ClienteLoader implements ApplicationRunner {
 
     private final ClienteService clienteService;
-
-    public ClienteLoader(ClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

@@ -9,26 +9,23 @@ import br.edu.infnet.petshopapi.model.dto.AgendamentoResponseDTO;
 import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.dto.FuncionarioResponseDTO;
 import br.edu.infnet.petshopapi.model.repository.AgendamentoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class AgendamentoService {
 
     private final GoogleCalendarClient googleCalendarClient;
-    private final AgendamentoRepository agendamentoRepository;
-    private final ClienteService clienteService;
-    private final FuncionarioService funcionarioService;
 
-    public AgendamentoService(GoogleCalendarClient googleCalendarClient, AgendamentoRepository agendamentoRepository,
-                              ClienteService clienteService, FuncionarioService funcionarioService) {
-        this.googleCalendarClient = googleCalendarClient;
-        this.agendamentoRepository = agendamentoRepository;
-        this.clienteService = clienteService;
-        this.funcionarioService = funcionarioService;
-    }
+    private final AgendamentoRepository agendamentoRepository;
+
+    private final ClienteService clienteService;
+
+    private final FuncionarioService funcionarioService;
 
     public AgendamentoResponseDTO criarAgendamento(Agendamento agendamento) {
 

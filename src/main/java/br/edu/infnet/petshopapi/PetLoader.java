@@ -7,6 +7,7 @@ import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteNaoEncontradoExce
 import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.service.ClienteService;
 import br.edu.infnet.petshopapi.model.service.PetService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -17,16 +18,12 @@ import java.io.FileReader;
 
 @Order(2)
 @Component
+@RequiredArgsConstructor
 public class PetLoader implements ApplicationRunner {
 
     private final PetService petService;
 
     private final ClienteService clienteService;
-
-    public PetLoader(PetService petService, ClienteService clienteService) {
-        this.petService = petService;
-        this.clienteService = clienteService;
-    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

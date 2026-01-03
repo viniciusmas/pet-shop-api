@@ -7,6 +7,7 @@ import br.edu.infnet.petshopapi.model.domain.exceptions.PetNaoEncontradoExceptio
 import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.dto.PetResponseDTO;
 import br.edu.infnet.petshopapi.model.repository.PetRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,15 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PetService {
 
     private final PetRepository petRepository;
-    private final ClienteService clienteService;
 
-    public PetService(PetRepository petRepository, ClienteService clienteService) {
-        this.petRepository = petRepository;
-        this.clienteService = clienteService;
-    }
+    private final ClienteService clienteService;
 
     @Transactional
     public PetResponseDTO incluir(Pet pet) {

@@ -4,6 +4,7 @@ import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioInvalidoException;
 import br.edu.infnet.petshopapi.model.service.FuncionarioService;
 import br.edu.infnet.petshopapi.util.Util;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -14,13 +15,10 @@ import java.math.BigDecimal;
 
 @Order(3)
 @Component
+@RequiredArgsConstructor
 public class FuncionarioLoader implements ApplicationRunner {
 
     private final FuncionarioService funcionarioService;
-
-    public FuncionarioLoader(FuncionarioService funcionarioService) {
-        this.funcionarioService = funcionarioService;
-    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

@@ -5,6 +5,7 @@ import br.edu.infnet.petshopapi.model.dto.ClienteRequestDTO;
 import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.service.ClienteService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,14 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
     private final ClienteService clienteService;
-
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")

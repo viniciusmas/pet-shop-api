@@ -7,6 +7,7 @@ import br.edu.infnet.petshopapi.model.domain.exceptions.FuncionarioNaoEncontrado
 import br.edu.infnet.petshopapi.model.dto.EnderecoRequestDTO;
 import br.edu.infnet.petshopapi.model.dto.FuncionarioResponseDTO;
 import br.edu.infnet.petshopapi.model.repository.FuncionarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,15 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;
-    private final ViaCepService viaCepService;
 
-    public FuncionarioService(FuncionarioRepository funcionarioRepository, ViaCepService viaCepService) {
-        this.funcionarioRepository = funcionarioRepository;
-        this.viaCepService = viaCepService;
-    }
+    private final ViaCepService viaCepService;
 
     @Transactional
     public FuncionarioResponseDTO incluir(Funcionario funcionario) {

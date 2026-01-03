@@ -6,6 +6,7 @@ import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteInvalidoException
 import br.edu.infnet.petshopapi.model.domain.exceptions.ClienteNaoEncontradoException;
 import br.edu.infnet.petshopapi.model.dto.ClienteResponseDTO;
 import br.edu.infnet.petshopapi.model.repository.ClienteRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,15 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
-    private final ViaCepService viaCepService;
 
-    public ClienteService(ClienteRepository clienteRepository, ViaCepService viaCepService) {
-        this.clienteRepository = clienteRepository;
-        this.viaCepService = viaCepService;
-    }
+    private final ViaCepService viaCepService;
 
     @Transactional
     public ClienteResponseDTO incluir(Cliente cliente) {

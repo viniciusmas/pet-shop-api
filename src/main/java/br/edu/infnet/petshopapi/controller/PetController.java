@@ -6,6 +6,7 @@ import br.edu.infnet.petshopapi.model.dto.PetRequestDTO;
 import br.edu.infnet.petshopapi.model.dto.PetResponseDTO;
 import br.edu.infnet.petshopapi.model.service.PetService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,14 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/pets")
 public class PetController {
 
     private final PetService petService;
-
-    public PetController(PetService petService) {
-        this.petService = petService;
-    }
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
