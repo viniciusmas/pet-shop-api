@@ -1,0 +1,5 @@
+package br.edu.infnet.petshopapi.auth.dto;
+
+import java.util.List;
+
+public record LoginJwtResponse(String username, List<String> roles, String token) { }
