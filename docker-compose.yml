@@ -1,0 +1,5 @@
+services:
+  backend:
+    image: vinisouza/pet-shop-backend:latest
+    ports:
+      - "8081:8081"

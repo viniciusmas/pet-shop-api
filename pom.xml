@@ -13,6 +13,7 @@
 	<version>1.0.0</version>
 	<name>pet-shop-api</name>
 	<description>API para Gestão de Pet Shop</description>
+	<packaging>jar</packaging>
 	<url/>
 	<licenses>
 		<license/>
