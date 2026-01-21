@@ -34,11 +34,6 @@ import java.util.stream.Collectors;
 public class SecurityConfig {
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration conf) throws Exception {
-        return conf.getAuthenticationManager();
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -69,7 +64,6 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
 
         // Necessário para o H2 console funcionar em frames
