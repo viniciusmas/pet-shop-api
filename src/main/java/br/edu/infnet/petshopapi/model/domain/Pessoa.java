@@ -3,7 +3,7 @@ package br.edu.infnet.petshopapi.model.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import jakarta.validation.Valid;
 
@@ -22,7 +22,7 @@ public abstract class Pessoa {
 
     private String rg;
 
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     private String sexo;
 

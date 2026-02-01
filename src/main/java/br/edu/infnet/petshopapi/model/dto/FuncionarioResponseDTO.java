@@ -5,7 +5,7 @@ import br.edu.infnet.petshopapi.model.domain.Funcionario;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class FuncionarioResponseDTO {
 
     private String rg;
 
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     private String sexo;
 

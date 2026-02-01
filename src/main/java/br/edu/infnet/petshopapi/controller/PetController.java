@@ -60,6 +60,16 @@ public class PetController {
         return ResponseEntity.status(HttpStatus.OK).body(pet);
     }
 
+    @GetMapping(value = "/obterPorIdCliente/{idCliente}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<List<PetResponseDTO>> obterPorIdCliente(@PathVariable Integer idCliente) {
+        List<PetResponseDTO> pets = petService.obterPorIdCliente(idCliente);
+        if (pets.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(pets);
+    }
+
     @GetMapping(value = "/idades")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<PetResponseDTO>> obterPorIdades(@RequestBody IdadeDTO idadeDTO) {
