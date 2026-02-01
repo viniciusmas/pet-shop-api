@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.NOT_FOUND.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.NOT_FOUND.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.NOT_FOUND.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
@@ -102,7 +102,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
@@ -113,7 +113,7 @@ public class GlobalExceptionHandler {
 
         errors.put("Data/hora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.INTERNAL_SERVER_ERROR.toString());
-        errors.put("Mensagem", ex.getMessage());
+        errors.put("message", ex.getMessage());
 
         return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
     }

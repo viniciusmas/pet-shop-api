@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 @Setter
 public class AgendamentoResponseDTO {
 
+    private Integer id;
+
     private String cliente;
 
     private String pet;
@@ -28,6 +30,7 @@ public class AgendamentoResponseDTO {
 
     public AgendamentoResponseDTO(Agendamento agendamento) {
         Pet pet = Pet.getPet(agendamento);
+        this.setId(agendamento.getId());
         this.setCliente(agendamento.getCliente().getNome());
         this.setPet(pet.getNome());
         this.setServico(agendamento.getServico().getDescricao());

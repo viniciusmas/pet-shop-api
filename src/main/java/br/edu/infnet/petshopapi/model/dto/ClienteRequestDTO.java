@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -26,7 +26,7 @@ public class ClienteRequestDTO {
     @NotBlank(message = "O RG é obrigatório.")
     private String rg;
 
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     @NotBlank(message = "O sexo é obrigatório.")
     private String sexo;
@@ -42,7 +42,7 @@ public class ClienteRequestDTO {
     @Email(message = "O e-mail está inválido")
     private String email;
 
-    private LocalDateTime clienteDeste;
+    private LocalDate clienteDeste;
 
     private Boolean status;
 }

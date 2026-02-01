@@ -1,2 +1,2 @@
-Vinicius Moreira;123.456.789-01;321826447;01-02-1988 00:00:00;Masculino;Casado;(21)98765-4321;vinicius@gmail.com;15-12-2024 15:30:45;true;20541-371
-Maria Silva;765.342.123-23;765766798;02-03-1984 00:00:00;Feminino;Solteira;(21)99776-5413;maria@gmail.com;15-01-2025 00:00:00;false;22070-012
+Vinicius Moreira;123.456.789-01;321826447;01-02-1988;Masculino;Casado;(21)98765-4321;vinicius@gmail.com;15-12-2024;true;20541-371
+Maria Silva;765.342.123-23;765766798;02-03-1984;Feminino;Solteira;(21)99776-5413;maria@gmail.com;15-01-2025;false;22070-012

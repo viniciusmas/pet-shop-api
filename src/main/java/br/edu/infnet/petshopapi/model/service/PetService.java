@@ -10,7 +10,6 @@ import br.edu.infnet.petshopapi.model.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +70,22 @@ public class PetService {
         Pet pet = petRepository.findById(id).orElseThrow(() -> new PetNaoEncontradoException("O pet com ID " + id + " não foi encontrado!"));
 
         return new PetResponseDTO(pet);
+    }
+
+    public List<PetResponseDTO> obterPorIdCliente(Integer id) {
+
+        if (id == null){
+            throw new IllegalArgumentException("O nome do Pet não pode ser nulo!");
+        }
+
+        List<Pet> pets = petRepository.findByTutor_Id(id).orElseThrow(() -> new PetNaoEncontradoException("Nenhum pet não foi encontrado!"));
+
+        List<PetResponseDTO> petsDTO = new ArrayList<>();
+
+        for (Pet pet : pets) {
+            petsDTO.add(new PetResponseDTO(pet));
+        }
+        return petsDTO;
     }
 
     public List<PetResponseDTO> obterLista() {

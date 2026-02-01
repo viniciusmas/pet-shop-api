@@ -4,7 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -24,7 +24,7 @@ public class FuncionarioRequestDTO {
     @NotBlank(message = "O RG é obrigatório.")
     private String rg;
 
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     @NotBlank(message = "O sexo é obrigatório.")
     private String sexo;

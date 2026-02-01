@@ -62,6 +62,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/pets/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/pets/").hasRole("ADMIN")
 
+                        .requestMatchers(HttpMethod.GET, "/api/agendamentos/").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/agendamentos/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/agendamentos/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/agendamentos/").hasRole("ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));

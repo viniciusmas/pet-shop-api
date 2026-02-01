@@ -13,4 +13,6 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
     Optional<List<Pet>> findByNomeContaining(String nome);
 
     Optional<List<Pet>> findByIdadeBetween(Integer min, Integer max);
+
+    Optional<List<Pet>> findByTutor_Id(Integer tutorId);
 }

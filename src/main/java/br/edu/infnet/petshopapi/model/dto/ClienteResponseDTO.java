@@ -5,7 +5,7 @@ import br.edu.infnet.petshopapi.model.domain.Endereco;
 import br.edu.infnet.petshopapi.model.domain.Pet;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Setter
@@ -20,7 +20,7 @@ public class ClienteResponseDTO {
 
     private String rg;
 
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
 
     private String sexo;
 
@@ -30,7 +30,7 @@ public class ClienteResponseDTO {
 
     private String email;
 
-    private LocalDateTime clienteDeste;
+    private LocalDate clienteDeste;
 
     private Boolean status;
 
