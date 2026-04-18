@@ -1,5 +1,43 @@
 services:
+  db:
+    image: postgres:15
+    container_name: petshop-db
+    restart: always
+    environment:
+      POSTGRES_USER: petshop
+      POSTGRES_PASSWORD: petshop123
+      POSTGRES_DB: petshopdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: petshop-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@petshop.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+
   backend:
     build: .
+    container_name: petshop-backend
     ports:
       - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/petshopdb
+      SPRING_DATASOURCE_USERNAME: petshop
+      SPRING_DATASOURCE_PASSWORD: petshop123
+
+volumes:
+  dbdata:
+  pgadmindata:
