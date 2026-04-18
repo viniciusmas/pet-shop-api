@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/login").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/api/funcionarios/").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/api/funcionarios/").hasRole("ADMIN")
