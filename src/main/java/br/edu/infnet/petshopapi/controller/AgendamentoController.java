@@ -7,7 +7,6 @@ import br.edu.infnet.petshopapi.model.service.AgendamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,13 +19,11 @@ public class AgendamentoController {
     private final AgendamentoService agendamentoService;
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AgendamentoResponseDTO> criarAgendamento(@RequestBody AgendamentoRequestDTO agendamentoRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(agendamentoService.criarAgendamento(new Agendamento(agendamentoRequestDTO)));
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<AgendamentoResponseDTO>> listarAgendamentos() {
         List<AgendamentoResponseDTO> agendamentos = agendamentoService.listarAgendamentos();
 
@@ -37,7 +34,6 @@ public class AgendamentoController {
     }
 
     @DeleteMapping(value = "/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> excluir(@PathVariable Integer id) {
         agendamentoService.excluir(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
