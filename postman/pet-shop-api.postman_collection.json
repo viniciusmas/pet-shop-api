@@ -1,0 +1,777 @@
+{
+  "info": {
+    "_postman_id": "480c085c-4e53-4d0c-bf4a-7d2752ac4d1f",
+    "name": "pet-shop-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47582128",
+    "_collection_link": "https://go.postman.co/collection/47582128-480c085c-4e53-4d0c-bf4a-7d2752ac4d1f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "cliente",
+      "item": [
+        {
+          "name": "obterPorId",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/clientes/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "clientes",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "obterPorCpf",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/clientes/cpf/123.456.789-01",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "clientes",
+                "cpf",
+                "123.456.789-01"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "obterLista",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/clientes",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "incluir",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Gustavo Ramos\",\r\n    \"cpf\": \"094.688.557-59\",\r\n    \"rg\": \"98457880\",\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": \"(21)98765-4321\",\r\n    \"email\": \"gustavo@gmail.com\",\r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"status\": true,\r\n    \"cepConsulta\": \"20735-040\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/clientes",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "clientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "alterar",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Gustavo Ramos Garcia de Souza\",\r\n    \"cpf\": \"123.438.525-21\",\r\n    \"rg\": \"98457880\",\r\n    \"dataNascimento\": \"2000-02-01T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Solteiro\",\r\n    \"telefone\": \"(21)98765-4321\",\r\n    \"email\": \"gustavo@gmail.com\", \r\n    \"clienteDeste\": \"2024-12-15T15:30:45\",\r\n    \"status\": true,\r\n    \"cepConsulta\": \"20720-160\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/clientes/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "clientes",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "excluir",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/clientes/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "clientes",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "inativar",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/clientes/3/inativar",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "clientes",
+                "3",
+                "inativar"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "funcionario",
+      "item": [
+        {
+          "name": "obterPorId",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/funcionarios/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "funcionarios",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "obterLista",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pet_shop_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/funcionarios",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "funcionarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "incluir",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": \"675.357.653-43\",\r\n    \"rg\": \"123456\",\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": \"(21)85679-7546\",\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 2000,\r\n    \"bonus\": 120,\r\n    \"cepConsulta\": \"20735-040\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/funcionarios",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "funcionarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "alterar",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Luiz Silva\",\r\n    \"cpf\": \"675.357.653-43\",\r\n    \"rg\": \"123456\",\r\n    \"dataNascimento\": \"2001-10-12T00:00:00\",\r\n    \"sexo\": \"Masculino\",\r\n    \"estadoCivil\": \"Casado\",\r\n    \"telefone\": \"(21)85679-7546\",\r\n    \"email\": \"luiz@gmail.com\",\r\n    \"cargo\": \"Vendedor\",\r\n    \"salario\": 45000,\r\n    \"bonus\": 1520,\r\n    \"cepConsulta\": \"20735-040\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/funcionarios/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "funcionarios",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "excluir",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/funcionarios/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "funcionarios",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "pet",
+      "item": [
+        {
+          "name": "obterPorId",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/pets/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "pets",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "obterLista",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/pets",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "pets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "obterPorIdades",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"idadeMin\" : 1,\r\n    \"idadeMax\" : 15 \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/pets/idades",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "pets",
+                "idades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "obterPorNomeContem",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/pets/contem/Sp",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "pets",
+                "contem",
+                "Sp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "incluir",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Bob\",\r\n    \"tipoEspecie\": \"CACHORRO\",\r\n    \"raca\": \"Vira Lata\",\r\n    \"idade\": 7,\r\n    \"peso\": 9.0,\r\n    \"tutor\": {\"id\": 1}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/pets",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "pets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "alterar",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Caramelo\",\r\n    \"tipoEspecie\": \"CACHORRO\",\r\n    \"raca\": \"Vira Lata\",\r\n    \"idade\": 7,\r\n    \"peso\": 9.0,\r\n    \"tutor\": {\"id\": 1}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/pets/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "pets",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "excluir",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/pets/2",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "pets",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "viaCep",
+      "item": [
+        {
+          "name": "obterEndereco",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/enderecos/22611030",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "enderecos",
+                "22611030"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "agendamento",
+      "item": [
+        {
+          "name": "criarAgendamento",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"cliente\": { \"id\": 1 },\r\n    \"pet\": { \"id\": 1 },\r\n    \"funcionario\": { \"id\": 1 },\r\n    \"servico\": \"BANHO\",\r\n    \"dataHora\": \"2026-05-06T10:00:00\",\r\n    \"status\": \"AGENDADO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:37251/api/agendamentos",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "37251",
+              "path": [
+                "api",
+                "agendamentos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"adminPass\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login keycloack",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text",
+              "uuid": "6a6d4bab-311b-4988-aa2e-b4ddce7ea215"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "text",
+              "uuid": "edffc76c-4c39-48ee-9812-98307dd3d43e"
+            },
+            {
+              "key": "password",
+              "value": "admin",
+              "type": "text",
+              "uuid": "9f2bdde3-a538-4c29-bc52-17ab8c1ea4d6"
+            },
+            {
+              "key": "client_id",
+              "value": "pet-shop",
+              "type": "text",
+              "uuid": "6161c1bd-061c-4577-82c0-b8ec42201f5d"
+            },
+            {
+              "key": "client_secret",
+              "value": "rMrugd5iltzSeC99p6Wb64WaQPfmVKBJ",
+              "type": "text",
+              "uuid": "151484bf-8a61-4133-b874-4d351818f704"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/realms/pet-shop/protocol/openid-connect/token/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "realms",
+            "pet-shop",
+            "protocol",
+            "openid-connect",
+            "token",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
