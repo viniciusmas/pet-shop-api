@@ -1,0 +1,61 @@
+name: Deploy Kubernetes (default namespace)
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch: {}
+
+env:
+  K8S_NAMESPACE: pet-shop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalar kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: v1.29.0
+
+      - name: Configurar acesso ao cluster
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.kube"
+          if [[ -z "$KUBE_CONFIG" ]]; then
+            echo "Defina o secret KUBE_CONFIG no repositório (Settings → Secrets → Actions)."
+            exit 1
+          fi
+          echo "$KUBE_CONFIG" > "$HOME/.kube/config"
+          chmod 600 "$HOME/.kube/config"
+          kubectl version --client
+          kubectl cluster-info || true
+
+      - name: Aplicar Kubernetes
+        working-directory: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+
+          if kubectl get namespace "$K8S_NAMESPACE" > /dev/null 2>&1; then
+            echo "Namespace '$K8S_NAMESPACE' já existe."
+          else
+            echo "Namespace '$K8S_NAMESPACE' não existe. Criando..."
+            kubectl create namespace "$K8S_NAMESPACE"
+            echo "Namespace criado com sucesso."
+          fi
+
+          kubectl apply -f ../k8s/deployment-db.yaml
+          kubectl apply -f ../k8s/deployment-backend.yaml
+          kubectl apply -f ../k8s/prometheus.yaml
+
+      - name: Aguardar rollout
+        run: |
+          set -euo pipefail
+          kubectl rollout status deployment/guia-app -n "$K8S_NAMESPACE" --timeout=300s
+          kubectl rollout status deployment/prometheus -n "$K8S_NAMESPACE" --timeout=300s
+          kubectl rollout status deployment/grafana -n "$K8S_NAMESPACE" --timeout=300s
+          kubectl get pods,svc -n "$K8S_NAMESPACE"
