@@ -49,7 +49,7 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /etc/prometheus
-            - name: data
+            - name: prometheus-config
               mountPath: /prometheus
           readinessProbe:
             httpGet:
@@ -72,10 +72,11 @@ spec:
               memory: 1Gi
       volumes:
         - name: config
+          persistentVolumeClaim:
+            claimName: prometheus-pvc
+        - name: prometheus-config
           configMap:
             name: prometheus-config
-        - name: data
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

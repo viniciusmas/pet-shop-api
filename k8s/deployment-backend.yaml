@@ -113,142 +113,248 @@ metadata:
 data:
   guia-pet-shop.json: |
     {
-      "annotations": { "list": [] },
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
       "editable": true,
-      "graphTooltip": 1,
+      "fiscalYearStartMonth": 0,
+      "graphTooltip": 0,
+      "id": null,
       "links": [],
       "liveNow": false,
+      "title": "Pet-Shop - Prometheus (lab)",
+      "uid": "guia-pet-shop-prometheus",
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 0},
+          "id": 1,
+          "options": {
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "10.2.3",
+          "targets": [
+            {
+              "expr": "rate(process_cpu_seconds_total[1m]) * 100",
+              "legendFormat": "CPU %",
+              "refId": "A"
+            }
+          ],
+          "title": "Uso de CPU",
+          "type": "gauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 0},
+          "id": 2,
+          "options": {
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"}
+          },
+          "pluginVersion": "10.2.3",
+          "targets": [
+            {
+              "expr": "process_resident_memory_bytes",
+              "legendFormat": "RSS",
+              "refId": "A"
+            }
+          ],
+          "title": "Uso de Memória (RSS)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 0},
+          "id": 3,
+          "options": {
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"}
+          },
+          "pluginVersion": "10.2.3",
+          "targets": [
+            {
+              "expr": "jvm_memory_used_bytes{area=\"heap\"}",
+              "legendFormat": "Heap usado",
+              "refId": "A"
+            }
+          ],
+          "title": "Heap Usado",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 8},
+          "id": 4,
+          "options": {
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"}
+          },
+          "pluginVersion": "10.2.3",
+          "targets": [
+            {
+              "expr": "jvm_threads_live",
+              "legendFormat": "Threads ativas",
+              "refId": "A"
+            }
+          ],
+          "title": "Threads Ativas",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 8
+          },
+          "id": 5,
+          "options": {
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"}
+          },
+          "pluginVersion": "10.2.3",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[5m])) by (le))",
+              "legendFormat": "P95",
+              "refId": "A"
+            }
+          ],
+          "title": "Latência P95",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "reqps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 8},
+          "id": 6,
+          "options": {
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom"}
+          },
+          "pluginVersion": "10.2.3",
+          "targets": [
+            {
+              "expr": "sum(rate(http_server_requests_seconds_count{status=~\"5..\"}[5m]))",
+              "legendFormat": "Erros 5xx",
+              "refId": "A"
+            }
+          ],
+          "title": "Taxa de Erros (5xx)",
+          "type": "timeseries"
+        }
+      ],
       "refresh": "10s",
       "schemaVersion": 38,
       "style": "dark",
       "tags": ["Pet-Shop"],
-      "templating": { "list": [] },
-      "time": { "from": "now-30m", "to": "now" },
-      "timezone": "browser",
-      "title": "Pet-Shop - Prometheus (lab)",
-      "uid": "guia-pet-shop-prometheus",
+      "templating": {
+        "list": []},
+      "time": {
+        "from": "now-15m",
+        "to": "now"},
+      "timepicker": {},
+      "timezone": "",
       "version": 1,
-      "panels": [
-        {
-          "type": "stat",
-          "title": "Prometheus UP",
-          "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
-          "id": 1,
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "targets": [
-            {
-              "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "up{job=\"prometheus\"}",
-              "refId": "A"
-            }
-          ],
-          "fieldConfig": { "defaults": { "unit": "short" } },
-          "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false } }
-        },
-        {
-          "type": "stat",
-          "title": "Series no TSDB",
-          "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
-          "id": 2,
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "targets": [
-            {
-              "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "prometheus_tsdb_head_series",
-              "refId": "A"
-            }
-          ],
-          "fieldConfig": { "defaults": { "unit": "short" } },
-          "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false } }
-        },
-        {
-          "type": "stat",
-          "title": "Amostras no ultimo scrape",
-          "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
-          "id": 3,
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "targets": [
-            {
-              "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "scrape_samples_scraped{job=\"prometheus\"}",
-              "refId": "A"
-            }
-          ],
-          "fieldConfig": { "defaults": { "unit": "short" } },
-          "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false } }
-        },
-        {
-          "type": "stat",
-          "title": "Memoria RSS (processo)",
-          "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
-          "id": 4,
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "targets": [
-            {
-              "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "process_resident_memory_bytes{job=\"prometheus\"}",
-              "refId": "A"
-            }
-          ],
-          "fieldConfig": { "defaults": { "unit": "bytes" } },
-          "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false } }
-        },
-        {
-          "type": "timeseries",
-          "title": "Amostras anexadas ao TSDB / s",
-          "gridPos": { "h": 9, "w": 12, "x": 0, "y": 4 },
-          "id": 5,
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "fieldConfig": {
-            "defaults": {
-              "unit": "ops",
-              "custom": {
-                "drawStyle": "line",
-                "fillOpacity": 20,
-                "lineInterpolation": "smooth",
-                "showPoints": "never"
-              }
-            }
-          },
-          "options": { "legend": { "displayMode": "list", "placement": "bottom" } },
-          "targets": [
-            {
-              "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "rate(prometheus_tsdb_head_samples_appended_total[5m])",
-              "legendFormat": "samples/s",
-              "refId": "A"
-            }
-          ]
-        },
-        {
-          "type": "timeseries",
-          "title": "Duracao do scrape (seg)",
-          "gridPos": { "h": 9, "w": 12, "x": 12, "y": 4 },
-          "id": 6,
-          "datasource": { "type": "prometheus", "uid": "prometheus" },
-          "fieldConfig": {
-            "defaults": {
-              "unit": "s",
-              "custom": {
-                "drawStyle": "line",
-                "fillOpacity": 20,
-                "lineInterpolation": "smooth",
-                "showPoints": "never"
-              }
-            }
-          },
-          "options": { "legend": { "displayMode": "list", "placement": "bottom" } },
-          "targets": [
-            {
-              "datasource": { "type": "prometheus", "uid": "prometheus" },
-              "expr": "scrape_duration_seconds{job=\"prometheus\"}",
-              "legendFormat": "{{instance}}",
-              "refId": "A"
-            }
-          ]
-        }
-      ]
+      "weekStart": ""
     }
+
 ---
 # Deployment do Grafana para visualização de métricas
 apiVersion: apps/v1
