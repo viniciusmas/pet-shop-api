@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: pet-shop
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: vinisouza/keycloak-petshop:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: KEYCLOAK_ADMIN
+              value: "vmas"
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: "abc123@"
+          volumeMounts:
+            - name: keycloak-config
+              mountPath: /opt/keycloak/conf/keycloak.conf
+              subPath: keycloak.conf
+      volumes:
+        - name: keycloak-config
+          configMap:
+            name: keycloak-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  namespace: pet-shop
+spec:
+  type: NodePort
+  selector:
+    app: keycloak
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-config
+  namespace: pet-shop
+data:
+  keycloak.conf: | 
+    hostname=keycloak.local
+    http-enabled=true
+    http-port=8080
+    http.headers.frame-options=ALLOW-FROM http://petshop.local
+    http.headers.content-security-policy=frame-ancestors http://petshop.local http://keycloak.local;
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-ingress
+  namespace: pet-shop
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: keycloak.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak
+                port:
+                  number: 8080

@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pet-shop-frontend
+  namespace: pet-shop
+  labels:
+    app: pet-shop-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pet-shop-frontend
+  template:
+    metadata:
+      labels:
+        app: pet-shop-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: vinisouza/pet-shop-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 5173
+          env:
+            - name: VITE_API_URL
+              value: "http://api.petshop.local"
+            - name: VITE_KEYCLOAK_URL
+              value: "http://keycloak.local"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pet-shop-frontend
+  namespace: pet-shop
+spec:
+  type: NodePort
+  selector:
+    app: pet-shop-frontend
+  ports:
+    - name: http
+      port: 5173
+      targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pet-shop-frontend-ingress
+  namespace: pet-shop
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: petshop.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pet-shop-frontend
+                port:
+                  number: 5173
